@@ -17,10 +17,26 @@ $("#search-button").on("click", function(event) {
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-    console.log(response[0].lat);
-    console.log(response[0].lon);
+    var lat = response[0].lat;
+    var lon = response[0].lon;
+    console.log("Lat:" + lat + "Lon:" + lon)
+    queryURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=` + apiKey + "&units=metric";
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+     console.log(response)
+     var currentWeather = response.list[0];
+     $("#today").append(`<h2>${currentWeather.weather[0].icon}</h2>`);
+     $("#today").append(`<h3>${currentWeather.weather[0].description}</h3>`);
+     $("#today").append(`<p>Temperature: ${currentWeather.main.temp}°C</p>`);
+     $("#today").append(`<p>Humidity: ${currentWeather.main.humidity}%</p>`);
+     $("#today").append(`<p>Wind speed: ${currentWeather.wind.speed}`+ " m/s</p>");
+    });
   });
-});
+
+
+  });
 
 
 

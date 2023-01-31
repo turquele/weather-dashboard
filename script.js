@@ -12,7 +12,7 @@ $("#search-button").on("click", function(event) {
   cityInput = $("#search-input").val();
   console.log(cityInput);
   //Search coordinates of city
-  queryURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=" + apiKey;
+  queryURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=" + apiKey;
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -21,7 +21,7 @@ $("#search-button").on("click", function(event) {
     var lon = response[0].lon;
     console.log("Lat:" + lat + "Lon:" + lon);
     //search weather for coordinates
-    queryURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=` + apiKey + "&units=metric";
+    queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=` + apiKey + "&units=metric";
     $.ajax({
       url: queryURL,
       method: "GET"

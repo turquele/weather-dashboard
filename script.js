@@ -1,7 +1,7 @@
 
 // queryURL is the url we'll use to query the API
 var apiKey = "12cdccffdab81e42eb35554f2442ce5f"
-var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=" + apiKey;
+var queryURL = ""
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var cityInput
 

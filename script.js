@@ -4,11 +4,13 @@ var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPI
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var cityInput;
 var citiesList;
+console.log(citiesList);
+console.log(localStorage.getItem("cities"));
 
 // Get list of searched cities from storage if they exist
-if (localStorage.getItem("cities") !== 'undefined') {
+if (localStorage.getItem("cities") !== null) {
   citiesList = JSON.parse(localStorage.getItem("cities"));
-  for (let i = 0; i < Math.min(citiesList.length, 6); i++) {
+  for (let i = 0; i < Math.min(localStorage.getItem("cities").length, 6); i++) {
     $("#history").append(`
       <button type="submit" class="btn btn-secondary search-button btn-block rounded" id="${citiesList[i]}" aria-label="submit search">
       ${citiesList[i]}

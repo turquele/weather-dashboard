@@ -14,7 +14,7 @@ Input the name of a city and search to obtain the weather. A list of searches wi
 
 Screenshot:
 
-![image](assets/images/screenshot.png)
+![image](assets/screenshot.png)
 
 ## Link to a live example
 

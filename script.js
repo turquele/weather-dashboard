@@ -1,6 +1,6 @@
-// queryURL is the url we'll use to query the API
+// Declare variables
 var apiKey = "12cdccffdab81e42eb35554f2442ce5f";
-var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=" + apiKey;
+var queryURL
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var cityInput;
 var citiesList;
@@ -10,13 +10,7 @@ console.log(localStorage.getItem("cities"));
 // Get list of searched cities from storage if they exist
 if (localStorage.getItem("cities") !== null) {
   citiesList = JSON.parse(localStorage.getItem("cities"));
-  for (let i = 0; i < Math.min(localStorage.getItem("cities").length, 6); i++) {
-    $("#history").append(`
-      <button type="submit" class="btn btn-secondary search-button btn-block rounded" id="${citiesList[i]}" aria-label="submit search">
-      ${citiesList[i]}
-      </button>`
-    );
-  }
+  populateButtons();
 } else {
   citiesList = [];
 }
@@ -35,13 +29,7 @@ $("#search-button").on("click", function(event) {
   console.log(cityInput);
   //Repopulate buttons from local storage
   $("#history").empty();
-  for (let i = 0; i < Math.min(citiesList.length, 6); i++) {
-    $("#history").append(`
-      <button type="submit" class="btn btn-secondary search-button btn-block rounded" id="${citiesList[i]}" aria-label="submit search">
-      ${citiesList[i]}
-      </button>`
-    );
-  }
+  populateButtons();
   //Search coordinates of city
   queryURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=" + apiKey;
   $.ajax({
@@ -164,4 +152,12 @@ $(".btn-secondary").on("click", function(event) {
   });
 })
 
-
+function populateButtons() {
+  for (let i = 0; i < Math.min(localStorage.getItem("cities").length, 6); i++) {
+    $("#history").append(`
+      <button type="submit" class="btn btn-secondary search-button btn-block rounded" id="${citiesList[i]}" aria-label="submit search">
+      ${citiesList[i]}
+      </button>`
+    );
+  }
+}
